@@ -3,7 +3,7 @@ AROMA Script All-In-One - CM11 Defy
 
 
 AROMA package Contains:
--------------
+------------------------
 
 
 Mods:     |Apps: |                                      Misc:
@@ -19,8 +19,51 @@ Mods:     |Apps: |                                      Misc:
 |Enable Facebook Contact Sync
 |Remove superuser "link" from Settings.apk
 
+=============================================
+=============================================
+
+System Cleaner:
+---------------
+        /system/usr/srec/config
+        /system/app/Apollo.apk
+        /system/app/CMFileManager.apk
+        /system/priv-app/CMUpdater.apk
+        /system/app/DSPManager.apk
+        /system/app/Email.apk
+        /system/app/Exchange2.apk
+        /system/app/Galaxy4.apk
+        /system/app/NoiseField.apk
+        /system/app/HoloSpiralWallpaper.apk
+        /system/app/LiveWallpapers.apk
+        /system/app/LiveWallpapersPicker.apk
+        /system/app/LockClock.apk
+        /system/app/MagicSmokeWallpapers.apk
+        /system/app/PhaseBeam.apk
+        /system/app/PicoTts.apk
+        /system/app/QuickSearchBox.apk
+        /system/app/Term.apk
+        /system/app/Torch.apk
+        /system/app/VisualizationWallpapers.apk
+        /system/app/VoicePlus.apk
+        /system/appWhisperPush.apk
+        /system/app/LatinIME.apk*
+        /system/app/DSPManager.apk*
+        /system/priv-app/Trebuchet.apk*
+
+        +Multiling Keyboard     
+        +Viper4Andoid FX
+        +Nova Launcher
 
 
-Xda link: http://forum.xda-developers.com/member.php?u=5398002
 
+
+
+
+
+
+
+_________________________________________________________________
+
+Xda link: 
+http://forum.xda-developers.com/showthread.php?t=2629694
 
