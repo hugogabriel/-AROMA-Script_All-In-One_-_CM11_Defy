@@ -3,32 +3,24 @@ AROMA Script All-In-One - CM11 Defy
 
 
 AROMA package Contains:
-
-Mods:
-SuperSU by Chainfire
-Fly-On Mod™ Tweaks
-Full Kit Kat Appearance
-Build.prop Tweaks
-Change DPI density to 225
-System Cleaner
-30 Steps Media Volume
-Ad-Block
-Enable Facebook Contact Sync
-Remove superuser "link" from Settings.apk
+-------------
 
 
-Apps:
-Nova Launcher
-Viper4Andoid
-Aero Control
-Multiling Keyboard (new beta)
-AcDisplay
-Greenify
+Mods:     |Apps: |                                      Misc:
+----------|-------------------------------------------|---------
+|SuperSU by Chainfire |Nova Launcher                  |Aroma File Manager
+|Fly-On Mod™ Tweaks       |Viper4Andoid               |
+|Full Kit Kat Appearance     |Aero Control
+|Build.prop Tweaks           |Multiling Keyboard (new beta)
+|Change DPI density to 225    |AcDisplay
+|System Cleaner               |Greenify
+|30 Steps Media Volume        |Install Latest Minimal Gapps
+|Ad-Block                     |
+|Enable Facebook Contact Sync
+|Remove superuser "link" from Settings.apk
 
 
-Gapps:
-Install Latest Minimal Gapps
+
+Xda link: http://forum.xda-developers.com/member.php?u=5398002
 
 
-Misc:
-Aroma File Manager
