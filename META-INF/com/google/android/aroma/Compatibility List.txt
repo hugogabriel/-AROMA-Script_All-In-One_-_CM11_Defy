@@ -1,0 +1,19 @@
+ <b>MOD/APP</b>			 	<b>COMPATIBILITY</b>
+ 
+ SuperSU					<#0000ff>ALL BUILDS<#0000ff></#>
+ FlyOn Mod				<#0000ff>ALL BUILDS<#0000ff></#>
+ Kit Kat Appearance 		<#ff0000>20140318<#ff0000></#>
+ Build.prop Tweaks 		<#0000ff>ALL BUILDS<#0000ff></#>
+ Change DPI 				<#0000ff>ALL BUILDS<#0000ff></#>
+ System Cleaner 			<#0000ff>ALL BUILDS<#0000ff></#>
+ 30 Steps Media Volume 	<#ff0000>20140318<#ff0000></#>
+ AdBlock 				<#0000ff>ALL BUILDS<#0000ff></#>
+ Facebook Contact Sync 	<#0000ff>ALL BUILDS<#0000ff></#>
+ Remove superuser "link" 	<#ff0000>20140318<#ff0000></#>
+ Nova Launcher 			<#0000ff>ALL BUILDS<#0000ff></#>
+ Viper4Andoid 			<#0000ff>ALL BUILDS<#0000ff></#>
+ Aero Control 				<#0000ff>ALL BUILDS<#0000ff></#>
+ Multiling Keyboard 		<#0000ff>ALL BUILDS<#0000ff></#>
+ AcDisplay 				<#0000ff>ALL BUILDS<#0000ff></#>
+ Greenify 				<#0000ff>ALL BUILDS<#0000ff></#>
+ Minimal Gapps 			<#0000ff>ALL BUILDS<#0000ff></#>

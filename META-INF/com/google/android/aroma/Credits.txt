@@ -1,0 +1,15 @@
+	
+	@<b>Quarx</b>, for CM11
+	@<b>slaid480</b>, for Fly-On Mods
+	@<b>Chainfire</b>, for SuperSU
+	@<b>enricocid</b>, for Kitkat Resources
+	@<b>commandersafi</b>, for Aroma App Creator
+	@<b>amarullz</b>, for AROMA Installer
+	@<b>zhuhang</b>,for ViPER4Android
+	@<b>Blechd0se</b>, for Aero Control
+	@<b>BaNkS</b>, for GApps
+	@<b>cuadedanh</b>, for Facebook Contact Sync
+	@<b>AChep</b>, for AcDisplay App
+	@<b>oasisfeng</b>, for Greenify
+	@<b>TeslaCoil</b>, for Nova Launcher
+	@<b>Rap God</b>, for exist		

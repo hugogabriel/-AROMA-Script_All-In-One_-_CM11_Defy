@@ -1,0 +1,336 @@
+##########################################################
+##				__________________________				##
+##				Script by @hugo.gabriel999				##
+##														##
+##					 ______________						##
+##					 Credits/Thanks:					##
+##														##
+##		@Quarx, for CM11								##
+##		@slaid480, for Fly-On Mods						##
+##		@Chainfire, for SuperSU							##
+##		@enricocid, for Kitkat Resources				##
+##		@commandersafi, for Aroma App Package Creator	##
+##		@amarullz, for AROMA Installer					##
+##		@zhuhang,for ViPER4Android						##
+##		@Blechd0se, for Aero Control					##
+##		@BaNkS, for GApps								##
+##		@cuadedanh, for Facebook Contact Sync			##
+##		@AChep, for AcDisplay App						##
+##		@oasisfeng, for Greenify						##
+##		@TeslaCoil, for Nova Launcher					##
+##		@Rap God, for exist								##
+##														##
+##														##
+##########################################################
+### LICENSE:
+#
+# Copyright (C) 2011 Ahmad Amarullah ( http://amarullz.com/ )
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+### FILE INFO:
+#
+# AROMA Installer 2.70 - AROMA Installer Test Script Configuration
+#       (c) 2011-2012 by Ahmad Amarullah
+#           amarullz - xda-developers
+#           http://www.amarullz.com/
+#
+#       Binary Version  : 2.70B
+#       Binary Codename : Flamboyan
+#
+### INFO:
+#
+# * AROMA Resource Dir  = META-INF/com/google/android/aroma
+# * AROMA Temporary Dir = /tmp/aroma/
+#
+# * About Icon          = @alert - show <AROMA Resource Dir>/icons/alert.png
+#                         or if theme used it will find <themedir>/icon.alert.png
+#                         you can still access it via "icons/alert"
+#
+# * dp                  = Device Pixelate. WVGA/QHD = 3, HVGA = 2.
+#                         dp calculated with = round(min(width,height) / 160)
+#
+###
+##
+# Initializing Rom Information
+#
+ini_set("dp","3"); #-- HDPI ( 480x800 / WVGA )
+ini_set("transition","stack");
+fontresload("0", "ttf/Roboto-Regular.ttf", "12");
+fontresload("1", "ttf/Roboto-Regular.ttf", "18");
+
+ini_set("rom_name",             "Script All-In-One - CM11");
+ini_set("rom_version",          "3.5beta");
+ini_set("rom_author",           "hugo.gabriel999");
+ini_set("rom_device",           "Motorola Defy");
+ini_set("rom_date",             "Mar, 18 2014");
+
+###########################
+# Initial Splash Screen
+#
+#-- Syntax:  Duration in milliseconds, <AROMA Resource Dir>/<filename>.png
+splash(2500, "sample");
+
+###########################
+#
+# 1 - SET THEME
+#                           Syntax:  theme(ThemeName);   [located in <AROMA Resource Dir>\themes]
+theme("miui4");
+
+###########################
+#
+# 2 - AGREEMENT
+#							Syntax:(Title, Subtitle, Icon, Text Content, Checkbox Text, Alert Message);
+agreebox( "Agreement", "Please read carefully the"+""+ " Agreement.", "@agreement", resread("agreement.txt"), "I Agree with this Agreement...", "Please check the agreement..." );
+
+###########################
+#
+# 3 - CHANGELOG
+#                           Syntax:  textbox(Title, SubTitle, Icon, Text);
+textbox( "<~Changelog>", "<~Last Changelog>", "@update", resread("changelog.txt") );
+
+###########################
+#
+# 4 - Main Menu
+#                           Syntax:  menubox(Title, SubTitle, Icon, PropFile, MenuItems);
+menubox( "Menu", "Please select menu below:", "@package", "menu.prop",   
+
+  #-----------------------------+-----------------[ Menubox Items ]------------------------------------+---------------#
+  # TITLE                       |  SUBTITLE                                                            |   Item Icons  #
+  #-----------------------------+----------------------------------------------------------------------+---------------#
+    
+	"Install Apps/Mods",		"",																		"@install",     #-- selected = 1
+	"Memory Info",				"",																		"@memory",     	#-- selected = 2
+	"Compatibility List",		"",																		"@changelog",   #-- selected = 3
+	"Credits/Thanks",			"",																		"@positive",  	#-- selected = 4
+	"Aroma File Manager",		"",																		"@aromafm"     	#-- selected = 5
+);
+writetmpfile("menu.prop",readtmpfile("menu.prop"));
+# 
+	##--------------------------------------
+	##  4 Credits/Thanks
+	##--------------------------------------
+	if prop("menu.prop","selected")=="4" then
+	textbox(
+	"<~Credits/Thanks:>",
+	"", 
+	"@positive", 
+	resread("Credits.txt") 
+	);
+	ini_set("text_next", "OK");
+	back("2");
+	endif;
+	
+	##--------------------------------------
+	##  3 Compatibility List
+	##--------------------------------------
+	if prop("menu.prop","selected")=="3" then
+	textbox(
+	"<~Compatibility List>",
+	"", 
+	"@changelog", 
+	resread("Compatibility List.txt") 
+	);
+	ini_set("text_next", "OK");
+	back("2");
+	endif;
+	
+	##--------------------------------------
+	##  5 Aroma File Manager
+	##--------------------------------------
+	if prop("menu.prop","selected")=="5" then
+		restotmp("aromafm.cfg","aromafm.cfg");
+		resexec("aromafm.sh");
+		resexec("aromafm","1","0",prop("aromafm.prop","ziplocation"));
+		back("1");
+	endif;
+	
+	##--------------------------------------
+	##  2 Memory Info
+	##--------------------------------------
+	if prop("menu.prop","selected")=="2" then
+	pleasewait("Get System Informations...");
+	setvar(
+	#-- Variable Name
+		"sysinfo",
+    #-- Variable Value
+		"<@center><b>Memory Information</b></@>\n\n"+
+	  
+		"System Size\t\t: <b><#selectbg_g>"+getdisksize("/system","m")+" MB</#></b>\n"+
+		"Free\t\t\t\t: <b><#selectbg_g>"+getdiskfree("/system","m")+" MB</#></b>\n\n"+
+		"Data Size\t\t: <b><#selectbg_g>"+getdisksize("/data","m")+" MB</#></b>\n"+
+		"Free\t\t\t\t: <b><#selectbg_g>"+getdiskfree("/data","m")+" MB</#></b>\n\n"+
+		"SDCard Size\t\t: <b><#selectbg_g>"+getdisksize("/sdcard","m")+" MB</#></b>\n"+
+		"Free\t\t\t\t: <b><#selectbg_g>"+getdiskfree("/sdcard","m")+" MB</#></b>\n\n"+
+		""
+	);
+
+	ini_set("text_next", "OK");
+		#-- Show Textbox
+	textbox(
+		#-- Title
+			"System Information",
+		#-- Subtitle
+			"Loading Device's Memory Information...",
+		#-- Icon
+			"@info",
+		#-- Text
+			getvar("sysinfo")
+	);
+	back("2");
+	endif;
+
+	##--------------------------------------
+	##  1 Install Select box
+	##--------------------------------------
+	if prop("menu.prop","selected")=="1" then
+	checkbox(	"Script All-In-One - CM11",	"Choose the Mods/Apps to be installed",	"@install",	"install_choices.prop",
+
+	#----------------------------------------------------------------------[ Selectbox With Groups ]---------------------------------------------------------------------------------------------------------#
+	# TITLE               							|  SUBTITLE                                               																				 | Initial Value #
+	#-----------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+---------------#
+	"Mods:", 										"", 																																		2,
+	"SuperSU", 										"Replaces the native superuser at SuperSU by Chainfire", 																					0,
+	"Fly-On Mods", 									"By @slaid480", 																															0,
+	"Full Kitkat Framework",						"Buttons,Selectors,Progress Bars,Pagers Indicators,Scrubbers,etc.", 																		0,
+	"Bluid.prop Tweaks", 							"Add Tweaks in build.prop", 																												0,
+	"Change DPI", 									"Change DPI to 225", 																														0,
+	"30 Steps Volume", 								"This modification increments the media volume steps from 15 to 30 so you have more precise control of the media volume levels.", 			0,
+	"Ad-Block", 									"25.668 Domains Blocked.", 																													0,
+	"Enable Facebook Contact Sync", 				"Not tested by me.", 																														0,
+	"Remove superuser 'link' from Settings.apk", 	"settings_headers.xml", 																													0,
+	"Apps:", 										"", 																																		2,
+	"Nova Launcher", 								"Warning: This will remove the 'Trebuchet.apk'", 																							0,
+	"Viper4Android FX", 							"Warning: This will remove the 'DSPManager.apk'", 																							0,
+	"Aero Control", 								"Will be installed in: data/app", 																											0,
+	"Multiling Keyboard", 							"Warning: This will remove the 'LatinIME.apk'", 																							0,
+	"AcDisplay", 									"Active Display App", 																														0,
+	"Greenify", 									"Will be installed in: data/app", 																											0,
+	
+	"Gapps:", 										"", 																																		2,
+	"Install Gapps",		 						"Minimal (3-14) By @BaNkS", 																												0,
+	
+	"System Cleaner:",								"Delete some useless files", 																												2,
+	"Apollo.apk",									"Delete from /system/app", 																													0,
+	"CMFileManager.apk", 							"Delete from /system/app", 																													0,
+	"CMUpdater.apk", 								"Delete from /system/priv-app", 																											0,
+	"DSPManager.apk", 								"Delete from /system/app", 																													0,
+	"Email.apk", 									"Delete from /system/app", 																													0,
+	"Exchange2.apk", 								"Delete from /system/app", 																													0,
+	"LiveWallpapers.apk",							"Delete from /system/app", 																													0,
+	"LiveWallpapersPicker.apk",						"Delete from /system/app", 																													0,
+	"LockClock.apk",								"Delete from /system/app", 																													0,
+	"SetupWizard.apk",								"Delete from /system/priv-app", 																											0,
+	"Term.apk",										"Delete from /system/app", 																													0,
+	"Torch.apk", 									"Delete from /system/app", 																													0,
+	"VisualizationWallpapers.apk",					"Delete from /system/app", 																													0,
+	"VoicePlus.apk", 								"Delete from /system/app", 																													0,
+	"WhisperPush.apk",								"Delete from /system/app", 																													0,
+	"Ringtones, Notifications, Alarms", 			"only some, not all",																														0,
+	"Folder:/system/usr/srec/config", 				"'offline message dictation'",																												0
+	);
+	writetmpfile("install_choices.prop",readtmpfile("install_choices.prop"));
+	setvar("installer_title","You are about to install the following mods/apps:");
+	appendvar("installer_title","\n\n");
+	appendvar("installer_title",iif(prop("install_choices.prop","item.1.1")=="1","- SuperSU\n\n",""));
+	appendvar("installer_title",iif(prop("install_choices.prop","item.1.2")=="1","- Fly-On Mods\n\n",""));
+	appendvar("installer_title",iif(prop("install_choices.prop","item.1.3")=="1","- Full Kitkat Framework\n\n",""));
+	appendvar("installer_title",iif(prop("install_choices.prop","item.1.4")=="1","- bluid.prop Tweaks\n\n",""));
+	appendvar("installer_title",iif(prop("install_choices.prop","item.1.5")=="1","- Change DPI\n\n",""));
+	appendvar("installer_title",iif(prop("install_choices.prop","item.1.6")=="1","- 30 Steps Volume\n\n",""));
+	appendvar("installer_title",iif(prop("install_choices.prop","item.1.7")=="1","- Ad-Block\n\n",""));
+	appendvar("installer_title",iif(prop("install_choices.prop","item.1.8")=="1","- Enable Facebook Contact Sync\n\n",""));
+	appendvar("installer_title",iif(prop("install_choices.prop","item.1.9")=="1","- Remove superuser 'link' from Settings.apk\n\n",""));
+	appendvar("installer_title",iif(prop("install_choices.prop","item.2.1")=="1","- Nova Launcher\n\n",""));
+	appendvar("installer_title",iif(prop("install_choices.prop","item.2.2")=="1","- Viper4Android FX\n\n",""));
+	appendvar("installer_title",iif(prop("install_choices.prop","item.2.3")=="1","- Aero Control\n\n",""));
+	appendvar("installer_title",iif(prop("install_choices.prop","item.2.4")=="1","- Multiling Keyboard\n\n",""));
+	appendvar("installer_title",iif(prop("install_choices.prop","item.2.5")=="1","- AcDisplay\n\n",""));
+	appendvar("installer_title",iif(prop("install_choices.prop","item.2.6")=="1","- Greenify\n\n",""));
+	appendvar("installer_title",iif(prop("install_choices.prop","item.3.1")=="1","- Install Gapps\n\n",""));
+	appendvar("installer_title",iif(prop("install_choices.prop","item.4.1")=="1","- Apollo.apk\n\n",""));
+	appendvar("installer_title",iif(prop("install_choices.prop","item.4.2")=="1","- CMFileManager.apk\n\n",""));
+	appendvar("installer_title",iif(prop("install_choices.prop","item.4.3")=="1","- CMUpdater.apk\n\n",""));
+	appendvar("installer_title",iif(prop("install_choices.prop","item.4.4")=="1","- DSPManager.apk\n\n",""));
+	appendvar("installer_title",iif(prop("install_choices.prop","item.4.5")=="1","- Email.apk\n\n",""));
+	appendvar("installer_title",iif(prop("install_choices.prop","item.4.6")=="1","- Exchange2.apk\n\n",""));
+	appendvar("installer_title",iif(prop("install_choices.prop","item.4.7")=="1","- LiveWallpapers.apk\n\n",""));
+	appendvar("installer_title",iif(prop("install_choices.prop","item.4.8")=="1","- LiveWallpapersPicker.apk\n\n",""));
+	appendvar("installer_title",iif(prop("install_choices.prop","item.4.9")=="1","- LockClock.apk\n\n",""));
+	appendvar("installer_title",iif(prop("install_choices.prop","item.4.10")=="1","- SetupWizard.apk\n\n",""));
+	appendvar("installer_title",iif(prop("install_choices.prop","item.4.11")=="1","- Term.apk\n\n",""));
+	appendvar("installer_title",iif(prop("install_choices.prop","item.4.12")=="1","- Torch.apk\n\n",""));
+	appendvar("installer_title",iif(prop("install_choices.prop","item.4.13")=="1","- VisualizationWallpapers.apk\n\n",""));
+	appendvar("installer_title",iif(prop("install_choices.prop","item.4.14")=="1","- VoicePlus.apk\n\n",""));
+	appendvar("installer_title",iif(prop("install_choices.prop","item.4.15")=="1","- WhisperPush.apk\n\n",""));
+	appendvar("installer_title",iif(prop("install_choices.prop","item.4.16")=="1","- Ringtones, Notifications, Alarms\n\n",""));
+	appendvar("installer_title",iif(prop("install_choices.prop","item.4.17")=="1","- Folder:/system/usr/srec/config\n\n",""));
+
+viewbox(
+   "Summary:",
+   ""+getvar("installer_title")+"",
+   "@install"
+);
+if confirm(
+    #-- Title
+        "Ready!!",
+    #-- Text
+         "Are you sure want to install the Apps/Mods?",
+    #-- Icon (Optional)
+        "@install",
+    #-- Yes Text
+        "Yes",
+    #-- No Text
+        "No"
+)=="no"
+	then 
+	back(2);
+endif;
+
+install(
+  "Installing",
+  "Installing Apps/Mods"+ 
+  "...\n\nThis may take several seconds..",
+  "@install"
+);
+
+ini_set("text_next", "Finish");
+
+selectbox(
+	"Installation Complete",
+	"This helped you? Click 'thanks' at xda-developers!"+"\n",
+	"@select",
+	"reboot.prop",
+
+	"Reboot Device Now","",0,
+	"Return to Recovery","",1
+);
+endif;
+
+if prop("reboot.prop","selected.0")=="1" then
+if confirm(
+	#-- Title
+		"Reboot",
+	#-- Text
+		"Are you sure want to reboot your device?",
+	#-- Icon (Optional)
+		"@alert"
+)=="yes"
+	then
+	reboot("now");
+endif;
+endif;
+
+if prop("reboot.prop","selected.0")=="2" then
+	exit();
+endif;

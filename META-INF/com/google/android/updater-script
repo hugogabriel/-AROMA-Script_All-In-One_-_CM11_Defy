@@ -1,0 +1,409 @@
+##################################################################
+##					__________________________					##
+##					Script by @hugo.gabriel999					##
+##																##
+##						 ______________							##
+##						 Credits/Thanks:						##
+##																##
+##			@Quarx, for CM11									##
+##			@slaid480, for Fly-On Mods							##
+##			@Chainfire, for SuperSU								##
+##			@enricocid, for Kitkat Resources					##
+##			@commandersafi, for Aroma App Package Creator		##
+##			@amarullz, for AROMA Installer						##
+##			@zhuhang,for ViPER4Android							##
+##			@Blechd0se, for Aero Control						##
+##			@BaNkS, for GApps									##
+##			@cuadedanh, for Facebook Contact Sync				##
+##			@AChep, for AcDisplay App							##
+##			@oasisfeng, for Greenify							##
+##			@TeslaCoil, for Nova Launcher						##
+##			@Rap God, for exist									##
+##																##
+##																##
+##################################################################
+ui_print("Starting the install process");
+run_program("/sbin/busybox", "mount", "/system");
+run_program("/sbin/busybox", "mount", "/data");
+run_program("/sbin/busybox", "mount", "/cache");
+delete_recursive("/data/dalvik-cache");
+set_progress(0.05);
+##======================================================================##
+##								SuperSU									##
+##======================================================================##
+if (file_getprop("/tmp/aroma/install_choices.prop", "item.1.1")=="1") then 
+	ui_print("@Installing SuperSU");
+	delete("/system/app/Superuser.apk");
+	delete("/system/app/Superuser.odex");
+	delete("/system/app/SuperUser.apk");
+	delete("/system/app/SuperUser.odex");
+	delete("/system/app/superuser.apk");
+	delete("/system/app/superuser.odex");
+	delete("/system/app/Supersu.apk");
+	delete("/system/app/Supersu.odex");
+	delete("/system/app/SuperSU.apk");
+	delete("/system/app/SuperSU.odex");
+	delete("/system/app/supersu.apk");
+	delete("/system/app/supersu.odex");
+	set_progress(0.10);
+	run_program("/sbin/busybox", "rm", "/data/dalvik-cache/*com.noshufou.android.su*");
+	run_program("/sbin/busybox", "rm", "/data/dalvik-cache/*Superuser.apk*");
+	run_program("/sbin/busybox", "rm", "/data/dalvik-cache/*SuperUser.apk*");
+	run_program("/sbin/busybox", "rm", "/data/dalvik-cache/*superuser.apk*");
+	run_program("/sbin/busybox", "rm", "/data/dalvik-cache/*eu.chainfire.supersu*");
+	run_program("/sbin/busybox", "rm", "/data/dalvik-cache/*Supersu.apk*");
+	run_program("/sbin/busybox", "rm", "/data/dalvik-cache/*SuperSU.apk*");
+	run_program("/sbin/busybox", "rm", "/data/dalvik-cache/*supersu.apk*");
+	package_extract_dir("files/SuperSU", "/system");
+	set_progress(0.15);
+	set_perm_recursive(0, 0, 0777, 0777, "/system/etc/init.d");
+	set_perm(0, 0, 06755, "/system/xbin/su");
+	set_perm(0, 0, 0755, "/system/etc/install-recovery.sh");
+	set_perm(0, 0, 06755, "/system/xbin/daemonsu");
+	set_perm(0, 0, 06755, "/system/bin/.ext/.su");
+	symlink("/system/xbin/su", "/system/bin/su");
+endif;
+set_progress(0.20);
+##======================================================================##
+##							 Fly-On Mods								##
+##======================================================================##
+if (file_getprop("/tmp/aroma/install_choices.prop", "item.1.2")=="1") then 
+	ui_print("@Installing Fly-On Mods");
+	delete_recursive("/data/tombstones");
+	delete_recursive("/data/dalvik-cache");
+	delete_recursive("/data/boot-cache");
+	delete_recursive("/data/resource-cache");
+	delete("/system/etc/init.d/S98CFSD");
+	delete("/system/etc/init.d/S98CFSE");
+	delete("/system/etc/init.d/S98CFSF");
+	delete("/system/etc/init.d/S98CFSG");
+	delete("/system/etc/init.d/S98CFSH");
+	delete("/system/etc/init.d/S98CFSI");
+	delete("/system/etc/init.d/S98CFSJ");
+	delete("/system/etc/init.d/S98CFSK");
+	delete("/system/etc/init.d/S98CFSL");
+	delete("/system/etc/init.d/S98CFSM");
+	delete("/system/etc/init.d/S98CFS_1.9.1");
+	delete("/system/etc/init.d/S98CFS_2.1.1.1");
+	delete("/system/etc/init.d/S98CFS_1.9.4");
+	delete("/system/etc/init.d/S98CFSStock");
+	delete("/system/etc/init.d/S98CFS_1_9_1");
+	delete("/system/etc/init.d/S98CFS_2_1_1_1");
+	delete("/system/etc/init.d/S98CFS_1_9_4");
+	delete("/system/etc/init.d/S99finish");
+	delete("/system/etc/init.d/89system_tweak");
+	delete("/system/etc/init.d/98fly_core");
+	delete("/system/etc/init.d/90screenstate_scaling");
+	delete("/system/etc/init.d/S97ramscript");
+	delete("/system/etc/init.d/S97rambooster");
+	delete("/system/etc/init.d/03sdcardspeedfix");
+	delete("/system/etc/init.d/04kerneltweaks");
+	delete("/system/etc/init.d/05sysctltweaks");
+	delete("/system/etc/init.d/98KickAssKernel");
+	delete("/system/etc/init.d/06tweaks");
+	delete("/system/etc/init.d/S01edt_sysctl");
+	delete("/system/etc/init.d/S98edt_tweaks");
+	delete("/system/etc/init.d/s99acidext4tweak");
+	delete("/system/etc/init.d/00remount");
+	delete("/system/etc/init.d/02Transform");
+	delete("/system/etc/init.d/01acid_sysctl");
+	delete("/system/etc/init.d/03sdcardspeedfix");
+	delete("/system/etc/init.d/04kerneltweaks");
+	delete("/system/etc/init.d/05sysctltweaks");
+	delete("/system/etc/init.d/S98CFSA");
+	delete("/system/etc/init.d/S98CFSB");
+	delete("/system/etc/init.d/nos_entropy_agg");
+	delete("/system/etc/init.d/nos_entropy_light");
+	delete("/system/etc/init.d/nos_entropy_mod");
+	delete("/system/etc/init.d/prof_mod");
+	delete("/system/etc/entropy/rngd_light");
+	delete("/system/etc/entropy/rngd_moderate");
+	delete("/system/xbin/rngd");
+	delete("/system/xbin/entro");
+	delete("/system/bin/entropy");
+	delete("/system/bin/nos_entropy");
+	delete("/system/bin/seeder");
+	set_progress(0.23);
+	delete_recursive("/system/etc/entropy");
+	delete("/system/xbin/sqlite3");
+	delete("/system/etc/init.d/S98CFSC");
+	delete("/system/etc/init.d/s78enable_touchscreen_stock");
+	delete("/system/etc/init.d/s78enable_touchscreen_2");
+	delete("/system/etc/init.d/net_buffer");
+	delete("/system/etc/init.d/ram_optimize");
+	delete("/system/etc/init.d/remount_fullext4");
+	delete("/system/etc/init.d/S70darky_zipalign");
+	delete("/system/etc/init.d/ext4_lagfix");
+	delete("/system/etc/init.d/05LagFixer");
+	delete("/system/etc/init.d/S98system_tweak");
+	delete("/system/etc/init.d/05Fly_engine");
+	delete("/system/etc/init.d/Fly_engine");
+	delete("/system/etc/init.d/08Fly_engine");
+	delete("/system/etc/init.d/98system_tweak");
+	delete("/system/etc/init.d/ram_optimize");
+	delete("/system/etc/init.d/net_buffer");
+	delete("/system/etc/init.d/ext4_lagfix");
+	delete("/system/etc/init.d/velocity_system");
+	delete("/system/etc/init.d/velocity_ram");
+	delete("/system/etc/init.d/s78sensitive_touchscreen");
+	delete("/system/etc/init.d/remountCM_fullext4");
+	delete("/system/etc/init.d/02logdelete1");
+	delete("/system/etc/init.d/04Governor_tweaks");
+	delete("/system/etc/init.d/entropy");
+	delete("/data/Fly-On/S08_rngd.log");
+	delete("/data/Fly-On/rngd_state");
+	package_extract_dir("files/Flyon/system", "/system");
+	set_progress(0.26);
+	package_extract_dir("files/Flyon/data", "/data");
+	set_perm_recursive(0, 2000, 0777, 0777, "/system/etc/rngd");
+	set_perm(0, 0, 0777, "/system/bin/entropy_off");
+	set_perm(0, 0, 0777, "/system/bin/entropy_on");
+	set_perm(0, 0, 0777, "/system/bin/uninstaller");
+	set_perm(0, 0, 0777, "/system/bin/Fly-On");
+	set_perm(0, 0, 0777, "/system/xbin/openvpn");
+	set_perm(0, 0, 0777, "/system/etc/init.d/sqlite_optimize");
+	set_perm(0, 0, 0777, "/system/xbin/zipalign");
+	set_perm(0, 0, 0777, "/system/etc/init.d/03kill_media_server");
+	set_perm(0, 0, 0777, "/system/etc/init.d/09sdcardspeedfix");
+	set_perm(0, 0, 0777, "/system/etc/init.d/92cleaner");
+	set_perm(0, 0, 0777, "/system/etc/init.d/94Governor_tweaks");
+	set_perm(0, 0, 0777, "/system/etc/init.d/98fly_engine");
+	set_perm(0, 0, 0777, "/system/etc/init.d/darky_zipalign");
+	set_perm(0, 0, 0777, "/system/etc/init.d/zipaligndata");
+	set_perm(0, 0, 0777, "/system/etc/init.d/ram_manager");
+	set_progress(0.29);
+	set_perm(0, 0, 0777, "/system/etc/sysctl.conf");
+	set_perm_recursive(0, 2000, 0777, 0777, "/data/Fly-On");
+endif;
+set_progress(0.30);
+##======================================================================##
+##						 Full Kitkat Framework							##
+##======================================================================##
+if (file_getprop("/tmp/aroma/install_choices.prop", "item.1.3")=="1") then 
+	ui_print("@Installing Full Kitkat Framework");
+	package_extract_dir("files/FullKitkatFramework", "/system");
+endif;
+set_progress(0.35);
+##======================================================================##
+##							bluid.prop Tweaks							##
+##======================================================================##
+if (file_getprop("/tmp/aroma/install_choices.prop", "item.1.4")=="1") then 
+	ui_print("@Adding bluid.prop Tweaks");
+	package_extract_file("files/AddBluid.propTweaks/add_to_build.sh", "/tmp/add_to_build.sh");
+	set_perm(0, 0, 0777, "/tmp/add_to_build.sh");
+	run_program("/tmp/add_to_build.sh");
+endif;
+set_progress(0.40);
+##======================================================================##
+##							  Change DPI								##
+##======================================================================##
+if (file_getprop("/tmp/aroma/install_choices.prop", "item.1.5")=="1") then 
+	ui_print("@Changing DPI to 225");
+	package_extract_file("files/ChangeDPI/busybox", "/tmp/busybox");
+	set_perm(0, 0, 0777, "/tmp/busybox");
+	package_extract_file("files/ChangeDPI/lcd.sh", "/tmp/lcd.sh");
+	set_perm(0, 0, 0777, "/tmp/lcd.sh");
+	run_program("/tmp/lcd.sh");
+endif;
+set_progress(0.45);
+##======================================================================##
+##						   30 Steps Volume								##
+##======================================================================##
+if (file_getprop("/tmp/aroma/install_choices.prop", "item.1.6")=="1") then 
+	ui_print("@Installing 30 Steps Volume Mod");
+	package_extract_dir("files/30StepsVolume", "/system");
+endif;
+set_progress(0.50);
+##======================================================================##
+##							 	Ad-Block								##
+##======================================================================##
+if (file_getprop("/tmp/aroma/install_choices.prop", "item.1.7")=="1") then 
+	ui_print("@Blocking ads");
+	package_extract_dir("files/Adblock", "/system");
+	set_perm(0, 0, 0777, "/system/etc/hosts");
+endif;
+set_progress(0.53);
+##======================================================================##
+##						 Facebook Contact Sync							##
+##======================================================================##
+if (file_getprop("/tmp/aroma/install_choices.prop", "item.1.8")=="1") then 
+	ui_print("@Enabling Facebook Contact Sync");
+	package_extract_dir("files/FacebookSync", "/system");
+endif;
+set_progress(0.56);
+##======================================================================##
+##						Remove superuser "link"							##
+##======================================================================##
+if (file_getprop("/tmp/aroma/install_choices.prop", "item.1.9")=="1") then 
+	ui_print("@Removing superuser 'link' from Settings.apk");
+	package_extract_dir("files/RemoveSuperuserLink/tmp", "/tmp");
+	set_perm_recursive(0, 0, 2000, 0777, "/tmp");
+	run_program("/tmp/busybox", "/tmp/sh", "/tmp/sd.sh"); 
+	package_extract_dir("files/RemoveSuperuserLink/unpack", "/sdcard/unpack");
+	run_program("/tmp/busybox", "/tmp/sh", "/tmp/Icon.sh");
+	delete("/tmp/sd.sh", "/tmp/apkreplacer", "/tmp/busybox", "/tmp/sh", "/tmp/Icon.sh");
+	delete_recursive("/sdcard/unpack");
+endif;
+##======================================================================##
+##							 Nova Launcher								##
+##======================================================================##
+if (file_getprop("/tmp/aroma/install_choices.prop", "item.2.1")=="1") then 
+	ui_print("@Installing Nova Launcher");
+	delete("/system/priv-app/Trebuchet.apk");
+	package_extract_dir("files/NovaLauncher", "/system");
+endif;
+set_progress(0.60);
+##======================================================================##
+##							Viper4Android FX							##	
+##======================================================================##
+if (file_getprop("/tmp/aroma/install_choices.prop", "item.2.2")=="1") then 
+	ui_print("@Installing Viper4Android FX");
+	delete("/system/app/DSPManager.apk");
+	package_extract_dir("files/Viper4Android", "/system");
+endif;
+set_progress(0.70);
+##======================================================================##
+##							 Aero Control								##
+##======================================================================##
+if (file_getprop("/tmp/aroma/install_choices.prop", "item.2.3")=="1") then 
+	ui_print("@Installing Aero Control");
+	package_extract_dir("files/AeroControl", "/data/app");
+	set_perm_recursive(1000, 1000, 0771, 0644, "/data/app");
+endif;
+set_progress(0.75);
+##======================================================================##
+##						  Multiling Keyboard							##
+##======================================================================##
+if (file_getprop("/tmp/aroma/install_choices.prop", "item.2.4")=="1") then 
+	ui_print("@Installing Multiling Keyboard");
+	delete("/system/app/LatinIME.apk");
+	delete("/system/lib/libjni_latinime.so");
+	package_extract_dir("files/MultilingKeyboard", "/system");
+endif;
+##======================================================================##
+##						  		AcDisplay								##
+##======================================================================##
+if (file_getprop("/tmp/aroma/install_choices.prop", "item.2.5")=="1") then 
+	ui_print("@Installing AcDisplay");
+	package_extract_dir("files/ActiveDisplay", "/data/app");
+	set_perm_recursive(1000, 1000, 0771, 0644, "/data/app");
+endif;
+##======================================================================##
+##								 Greenify								##
+##======================================================================##
+if (file_getprop("/tmp/aroma/install_choices.prop", "item.2.6")=="1") then 
+	ui_print("@Installing Greenify");
+	package_extract_dir("files/Greenify", "/data/app");
+	set_perm_recursive(1000, 1000, 0771, 0644, "/data/app");
+endif;
+##======================================================================##
+##							 	 Gapps									##
+##======================================================================##
+if (file_getprop("/tmp/aroma/install_choices.prop", "item.3.1")=="1") then 
+	ui_print("@Installing Minimal Gapps");
+	delete("/system/app/QuickSearchBox.apk");
+	delete("/system/app/GmsCore.apk");
+	delete("/system/app/Velvet.apk");
+	delete("/system/app/Vending.apk");
+	delete("/system/app/BrowserProviderProxy.apk");
+	delete("/system/app/PartnerBookmarksProvider.apk");
+	delete("/system/priv-app/QuickSearchBox.apk");
+	delete("/system/priv-app/GmsCore.apk");
+	delete("/system/priv-app/Velvet.apk");
+	delete("/system/priv-app/Vending.apk");
+	set_progress(0.80);
+	delete("/system/priv-app/BrowserProviderProxy.apk");
+	delete("/system/priv-app/PartnerBookmarksProvider.apk");
+	package_extract_dir("files/Gapps", "/system");
+	set_perm(0, 0, 0755, "/system/addon.d/70-gapps.sh");
+	set_perm_recursive(0, 0, 0755, 0644, "/system/app");
+	set_perm_recursive(0, 0, 0755, 0644, "/system/priv-app");
+endif;
+##======================================================================##
+##							System Cleaner								##
+##======================================================================##
+if (file_getprop("/tmp/aroma/install_choices.prop", "item.4.1")=="1") then 
+	ui_print("@Deleting Apollo.apk");
+	delete("/system/app/Apollo.apk");
+endif;
+set_progress(0.81);
+if (file_getprop("/tmp/aroma/install_choices.prop", "item.4.2")=="1") then 
+	ui_print("@Deleting CMFileManager.apk");
+	delete("/system/app/CMFileManager.apk");
+endif;
+set_progress(0.82);
+if (file_getprop("/tmp/aroma/install_choices.prop", "item.4.3")=="1") then 
+	ui_print("@Deleting CMUpdater.apk");
+	delete("/system/priv-app/CMUpdater.apk");
+endif;
+if (file_getprop("/tmp/aroma/install_choices.prop", "item.4.4")=="1") then 
+	ui_print("@Deleting DSPManager.apk");
+	delete("/system/app/DSPManager.apk");
+endif;
+if (file_getprop("/tmp/aroma/install_choices.prop", "item.4.5")=="1") then 
+	ui_print("@Deleting Email.apk");
+	delete("/system/app/Email.apk");
+endif;
+if (file_getprop("/tmp/aroma/install_choices.prop", "item.4.6")=="1") then 
+	ui_print("@Deleting Exchange2.apk");
+	delete("/system/app/Exchange2.apk");
+endif;
+set_progress(0.83);
+if (file_getprop("/tmp/aroma/install_choices.prop", "item.4.7")=="1") then 
+	ui_print("@Deleting LiveWallpapers.apk");
+	delete("/system/app/LiveWallpapers.apk");
+endif;
+set_progress(0.85);
+if (file_getprop("/tmp/aroma/install_choices.prop", "item.4.8")=="1") then 
+	ui_print("@Deleting LiveWallpapersPicker.apk");
+	delete("/system/app/LiveWallpapersPicker.apk");
+endif;
+if (file_getprop("/tmp/aroma/install_choices.prop", "item.4.9")=="1") then 
+	ui_print("@Deleting LockClock.apk");
+	delete("/system/app/LockClock.apk");
+endif;
+if (file_getprop("/tmp/aroma/install_choices.prop", "item.4.10")=="1") then 
+	ui_print("@Deleting SetupWizard.apk");
+	delete("/system/priv-app/SetupWizard.apk");
+endif;
+set_progress(0.88);
+if (file_getprop("/tmp/aroma/install_choices.prop", "item.4.11")=="1") then 
+	ui_print("@Deleting Term.apk");
+	delete("/system/app/Term.apk");
+endif;
+if (file_getprop("/tmp/aroma/install_choices.prop", "item.4.12")=="1") then 
+	ui_print("@Deleting Torch.apk");
+	delete("/system/app/Torch.apk");
+endif;
+if (file_getprop("/tmp/aroma/install_choices.prop", "item.4.13")=="1") then 
+	ui_print("@Deleting VisualizationWallpapers.apk");
+	delete("/system/app/VisualizationWallpapers.apk");
+endif;
+if (file_getprop("/tmp/aroma/install_choices.prop", "item.4.14")=="1") then 
+	ui_print("@Deleting VoicePlus.apk");
+	delete("/system/app/VoicePlus.apk");
+endif;
+set_progress(0.89);
+if (file_getprop("/tmp/aroma/install_choices.prop", "item.4.15")=="1") then 
+	ui_print("@Deleting WhisperPush.apk");
+	delete("/system/app/WhisperPush.apk");
+endif;
+if (file_getprop("/tmp/aroma/install_choices.prop", "item.4.16")=="1") then 
+	ui_print("@Deleting Ringtones, Notifications, Alarms");
+	delete_recursive("/system/media/audio/ringtones", "/system/media/audio/notifications", "/system/media/audio/alarms");
+	package_extract_dir("files/Media", "/system");
+endif;
+if (file_getprop("/tmp/aroma/install_choices.prop", "item.4.17")=="1") then 
+	ui_print("@Deleting Folder:/system/usr/srec/config");
+	delete_recursive("/system/usr/srec/config");
+endif;
+#
+ui_print("Fixing Permissions");
+	package_extract_file("files/Scripts/fix_permissions.sh", "/tmp/fix_permissions.sh");
+	set_perm(0, 0, 0777, "/tmp/fix_permissions.sh");
+	run_program("/tmp/fix_permissions.sh");
+unmount("/data");
+unmount("/system");
+unmount("/cache");
+ui_print("@Finished");
+set_progress(1);

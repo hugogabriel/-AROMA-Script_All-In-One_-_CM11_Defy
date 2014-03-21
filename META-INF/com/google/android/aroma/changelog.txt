@@ -1,0 +1,31 @@
+<b><#selectbg_g>Script All-In-One - CM11</#></b>
+
+<*><b>V3.5beta</b> (20140318) </*>
+	- Reworked Script
+	- Support to New ROM Build (20140318)
+	- Added "Memory Info"
+	- Added "Aroma File Manager"
+	- Added "Compatibility List"
+	
+	
+<*><b>V3.4</b> (20140315) </*>
+	- Support to New ROM Build (20140315)
+	- Updated "Minimal Gapps"
+	- Updated "Multiling Keyboard"
+	- Added "Greenify" App
+
+	
+<*><b>V3.3</b> (20140312) </*>
+	- Support to New ROM Build (20140312)
+	- Updated "Viper4Android FX"
+
+	
+<*><b>V3.2</b> (20140308) </*>
+	- Support to New ROM Build (20140308)
+	- Added "AcDisplay" App
+	- Fix, Fix and more Fixes.
+
+	
+
+
+</*>To see the complete changelog, visit the thread on xda-developers.</*>
